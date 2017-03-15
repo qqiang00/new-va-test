@@ -129,10 +129,13 @@
         //this.isTestFinished = false;
         //是否正在分析本次应答
         this.isAnalysising = false;
+        // 提示信息
+        this.message = null;
+        this.messageType = "info";
 
         this.abortTest = function () {
             self.isTesting = false;
-
+            self.message = "click start to begin.";
         }
 
 
@@ -157,6 +160,8 @@
             self.isAnswerRight = false;
             self.isTestFinished = false;
             self.isAnalysising = false;
+            self.message = "make your choice";
+
             if (TestRecordSvc.curVAGrade.index == 0) { // <0.1
                 TestRecordSvc.curVAGrade = ConstantSvc.vaGrades[1];
                 //TestRecordSvc.curVAGrade.value = ConstantSvc.vaGrades[1].value;
@@ -166,13 +171,19 @@
         this.displayFeedBack = function (isanswerright) {
             if (isanswerright) {
                 console.log("Correct Answer");
+                self.message = "Correct Choice";
+                self.messageType = "success";
             } else {
                 console.log("Wrong Answer");
+                self.message = "Wrong Choice";
+                self.messageType = "danger";
             }
         }
 
         this.displayExamResult = function () {
             console.log("Test Finished");
+            self.message = "Final Grade: " + TestRecordSvc.finalVAGrade.text;
+            self.messageType = "info";
         }
 
 
@@ -189,7 +200,7 @@
 
         this.userClicked = function (o) {
 
-            if (self.isAnalysising == true) {
+            if (self.isAnalysising || self.isTestFinished || !self.isTesting) {
                 return;
             }
             self.isAnalysising = true;
@@ -202,7 +213,6 @@
                 case "RIGHT": self.userorient = ConstantSvc.orientations.right; break;
                 default: self.userorient = ConstantSvc.orientations.unknown; break;
             }
-
             self.processAfterUserAnswer();
             self.isAnalysising = false;
         }
@@ -234,7 +244,7 @@
 
                 if ((self.correcttimes >= self.maxcorrecttimes) &&
                     (self.examdirection == -1 || curVAIndex >= 11)) {
-                    console.log("set finished: true. line:239");
+                    TestRecordSvc.finalVAGrade = TestRecordSvc.curVAGrade;
                     self.isTestFinished = true;
                 }
                 //当检查方向不确定或者是朝着更好的视力等级进行时
@@ -261,12 +271,9 @@
                 //一旦回答错误，则先前在此行的正确回答次数被清零，表明正确回答次数是连续正确回答次数
                 self.correcttimes = 0;
                 //如果此行回答错误次数达到设定值，并且是朝着视力较好的等级方向检查或者已经到达最低检查视力，表明检查应该结束
-                if ((self.wrongtimes >= self.maxwrongtimes && self.examdirection == 1) ||
-                    (self.wrongtimes >= self.maxwrongtimes && curVAIndex <= 1)) {
+                if (self.wrongtimes >= self.maxwrongtimes && (self.examdirection == 1 || curVAIndex <= 1)) {
                     //此时的实际视力应比当前低一级
-                    curVAIndex -= 1;
-                    TestRecordSvc.curVAGrade = ConstantSvc.vaGrades[curVAIndex];
-                    console.log("set finished: true. line:278");
+                    TestRecordSvc.finalVAGrade = ConstantSvc.vaGrades[curVAIndex - 1];
                     self.isTestFinished = true;
                     //return;
                 }
@@ -304,7 +311,6 @@
                 //则不让用户继续点击“看不清”按钮
                 //uiBtnWrong.enabled=false
                 //显示检查结束的一些信息（显示最终得到的视力）
-                TestRecordSvc.finalVAGrade = TestRecordSvc.curVAGrade;
                 self.displayExamResult()
                 //用户可以点击导航条右上角的按钮返回上一个视图
                 //nextBarButtonItem.enabled=true

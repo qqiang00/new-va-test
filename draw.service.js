@@ -13,8 +13,8 @@
         this.eChar = new EChar(ConstantSvc.orientations.up, 20); // up 不能更改为其他值，涉及到E的旋转
         this.totalRotated = 0;
         this.oldOrient = this.eChar.orient;
-        this.drawAreaWidth = 500;
-        this.drawAreaHeight = 500;
+        this.drawAreaWidth = 550;
+        this.drawAreaHeight = 550;
         this.corRate = 1.0;
         this.myCanvas = document.getElementById("eCharCanvas");
         this.cxt = this.myCanvas.getContext("2d");
@@ -80,7 +80,7 @@
         }
         
        this.drawEChar = function (){
-           console.log("orien:"+self.eChar.orient);
+           // console.log("orien:"+self.eChar.orient);
            self.clearDrawArea();
            self.drawEChar2();
        }

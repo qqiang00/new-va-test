@@ -15,10 +15,17 @@
     // 这个方法本身调用了一个value服务：AppNameSvc
     // 这个方法是以构造方法的形式写的
     function AppConfig(AppNameSvc) {
-        
-        this.appName = "Visual Acuity Test";
+
+        this.appName = { 
+            "cn": "视力检查", 
+            "en": "Visual Acuity Test" 
+        };
+        this.appSmallName = { 
+            "cn": "单页程序 —— 规范、准确、高效", 
+            "en": "SPA - Professional Precise Efficient" 
+        };
         this.name = AppNameSvc;
-        this.author = "Qiang";
+        this.author = { "cn": "叶强", "en": "Qiang Ye" };
         this.version = 1;
         this.lastUpdateDate = "17 Mar 2017";
         this.copyright = "Copyright 2010 - 2020 All rights reserved."

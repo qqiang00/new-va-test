@@ -6,5 +6,6 @@
 
     function HeaderCtrl(AppConfigServiceSvc) {
         this.appTitle = AppConfigServiceSvc.appName;
+        this.appSmallTitle = AppConfigServiceSvc.appSmallName;
     }
 })();

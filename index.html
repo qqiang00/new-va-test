@@ -11,8 +11,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="./js/angular.js"></script>
-    <script src="./js/rzslider.js"></script>
     <script src="./js/app.js"></script>
+    <script src="./js/rzslider.js"></script>
     <script src="./js/pageNav.controller.js"></script>
     <script src="./js/appHeader.controller.js"></script>
     <script src="./js/appFooter.controller.js"></script>
@@ -26,9 +26,13 @@
 </head>
 
 <body ng-controller="PageNavCtrl as nav">
+    <div>
+        <span>中文</span>
+        <span>English</span>
 
+    </div>
     <div class="page-header" ng-controller="HeaderCtrl as head">
-        <h1> {{ head.appTitle }} <small>professional, precise, effecient</small></h1>
+        <h1> {{ head.appTitle['cn'] }} <small>{{ head.appSmallTitle['cn'] }}</small></h1>
     </div>
 
     <!-- end of header div -->
@@ -38,9 +42,6 @@
                 {{ page.title }}
             </a>
         </li>
-        <li class="undefined" role="presentation">
-            <a ng-click="nav.setCurrentPage()">Help</a>
-        </li>
     </ul>
 
 
@@ -48,20 +49,30 @@
     <div class="tab-content" ng-controller="TestSettingCtrl as ctrl">
 
         <div ng-show="nav.currentPageId === 'home'" role="tabpanel" class="tab-pane active" id="home">
-            <div class="panel-body">
-                <br><br><br><br><br><br> 简介
-                <br><br><br><br><br><br>
+            <div class="panel-body container">
+                <div class="jumbotron">
+
+                    <h1>Hello, Friend!</h1>
+                    <p>Help yourself to perform a professional, precise and efficient visual acuity test at home.</p>
+                    <p>All you need is a web browser with internet access and a pocket card.</p>
+                    <div class="btn-group" style="text-align:right" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary btn-lg" ng-click="nav.setCurrentPage('qa')" role="button">Learn more</button>
+                        <button type="button" class="btn btn-primary btn-lg" ng-click="nav.setCurrentPage('correction')" role="button">Try it</button>
+                    </div>
+
+          </div>
             </div>
         </div>
         <!--end of  简介 -->
 
         <div ng-show="nav.currentPageId === 'correction'" role="tabpanel" class="tab-pane active" id="correction">
             <div class="panel-body">
-                <ul>
-                    <li>取出一张尺寸为856mm×540mm的卡片</li>
-                    <li>滑动下方的滑块来缩放矩形区域，同时调整卡片位置使得它尽量与卡片重合</li>
-                    <li>完全重合即表示校准已完成，此后的操作中请不要调整屏幕分辨率以及缩放浏览器</li>
-                </ul>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span>取出一张尺寸为856mm×540mm的卡片.滑动下方的滑块来缩放矩形区域，同时调整卡片位置使得它尽量与卡片重合. 
+                        完全重合即表示校准已完成.此后的操作中请不要调整屏幕分辨率以及缩放浏览器.</span>
+                </div>
+
                 <div>
                     <rzslider rz-slider-model="ctrl.correctSlider.value" rz-slider-options="ctrl.correctSlider.options"></rzslider>
                 </div>
@@ -73,152 +84,136 @@
         <!--end of  屏幕校准 -->
 
         <div ng-show="nav.currentPageId === 'vaTest'" role="tabpanel" class="tab-pane active" id="vaTest">
+            <div class="panel-body">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span>您可以选择检查某一单眼或双眼同时检查，也可以戴或不戴眼镜。检查远视力建议选择3-5m。选择一个和您差不多级别的视力以节省检查时间。
+                        设置好后就可以点击开始了。</span>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row panel-body" style="position: relative;float: left;margin-right:15px;">
+                    <canvas id="eCharCanvas" width="500" height="500" style="border:1px dashed #CCCCCC;">
+                        "E" can not be drawn.<br>Your browser does not support the canvas element.
+                    </canvas>
+                </div>
+                <div class="row panel-body" style="position: relative;float: left;">
+                    <div class="panel-body">
+                        <span class="text-info">Eye:</span>
+                        <span ng-if="!ctrl.editModeEye" class="label label-primary">{{ ctrl.testRecord.eye }}</span>
+                        <button ng-if="!ctrl.editModeEye && !ctrl.isTesting" ng-click="ctrl.changeEditModeEye()" class="btn btn-default btn-xs">Edit</button>
 
-            <div class="panel panel-default">
-                <div class="panel-body row">
-                    <div class="container-fluid">
-                        <div class="row panel-body">
-                            <div class="col-md-7">
-                                <canvas id="eCharCanvas" width="550" height="550" style="border:1px dashed #CCCCCC;">
-                                    "E" can not be drawn.<br>Your browser does not support the canvas element.
-                                </canvas>
-
-                            </div>
-                            <div class="col-md-1">
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row  panel-body">
-                                    <span class="text-info">Eye:</span>
-
-                                    <span ng-if="!ctrl.editModeEye" class="label label-default">{{ ctrl.testRecord.eye }}</span>
-                                    <button ng-if="!ctrl.editModeEye && !ctrl.isTesting" ng-click="ctrl.changeEditModeEye()" class="btn btn-default btn-xs">Edit</button>
-
-                                    <select ng-if="ctrl.editModeEye" ng-init="ctrl.testRecord.eye" ng-model="ctrl.testRecord.eye" ng-options="eye for eye in ctrl.constants.eyes">
+                        <select ng-if="ctrl.editModeEye" ng-init="ctrl.testRecord.eye" ng-model="ctrl.testRecord.eye" ng-options="eye for eye in ctrl.constants.eyes">
                                     </select>
-                                    <button ng-if="ctrl.editModeEye" ng-click="ctrl.changeEditModeEye()" class="btn btn-default btn-xs">OK</button>
-                                </div>
-                                <div class="row panel-body">
-                                    <span class="text-info">Condition:</span>
+                        <button ng-if="ctrl.editModeEye" ng-click="ctrl.changeEditModeEye()" class="btn btn-default btn-xs">OK</button>
+                    </div>
+                    <div class="panel-body">
+                        <span class="text-info">Condition:</span>
 
-                                    <span ng-if="!ctrl.editModeTestType" class="label label-default">{{ ctrl.testRecord.testType }}</span>
-                                    <button ng-if="!ctrl.editModeTestType && !ctrl.isTesting" ng-click="ctrl.changeEditModeTestType()" class="btn btn-default btn-xs">Edit</button>
+                        <span ng-if="!ctrl.editModeTestType" class="label label-primary">{{ ctrl.testRecord.testType }}</span>
+                        <button ng-if="!ctrl.editModeTestType && !ctrl.isTesting" ng-click="ctrl.changeEditModeTestType()" class="btn btn-default btn-xs">Edit</button>
 
-                                    <select ng-if="ctrl.editModeTestType" ng-init="ctrl.testRecord.testType" ng-model="ctrl.testRecord.testType" ng-options="testType for testType in ctrl.constants.testType">
+                        <select ng-if="ctrl.editModeTestType" ng-init="ctrl.testRecord.testType" ng-model="ctrl.testRecord.testType" ng-options="testType for testType in ctrl.constants.testType">
                                     </select>
-                                    <button ng-if="ctrl.editModeTestType" ng-click="ctrl.changeEditModeTestType()" class="btn btn-default btn-xs">OK</button>
-
-                                </div>
-                                <div class="row panel-body">
-                                    <span class="text-info">VAGrade:</span>
-
-                                    <span ng-if="!ctrl.editModeCurVAGrade" class="label label-default">{{ ctrl.testRecord.curVAGrade.value }}</span>
-                                    <button ng-if="!ctrl.editModeCurVAGrade && !ctrl.isTesting" ng-click="ctrl.changeEditModeCurVAGrade()" class="btn btn-default btn-xs">Edit</button>
-
-                                    <select ng-if="ctrl.editModeCurVAGrade" ng-init="ctrl.testRecord.curVAGrade" ng-model="ctrl.testRecord.curVAGrade" ng-options="vaGrade.text for vaGrade in ctrl.constants.vaGrades">
-                                    </select>
-                                    <button ng-if="ctrl.editModeCurVAGrade" ng-click="ctrl.changeEditModeCurVAGrade()" class="btn btn-default btn-xs">OK</button>
-
-                                </div>
-                                <div class="row panel-body">
-                                    <span>Distance：</span>
-                                    <span class="label label-default">{{ ctrl.disSlider.value/100 }} M</span>
-                                    <button ng-if="!ctrl.editModeDistance && !ctrl.isTesting" ng-click="ctrl.changeEditModeDistance()" type="button" class="btn btn-default btn-xs"
-                                        data-toggle="modal" data-target="#distanceModal">
-                                    Edit</button>
-                                    <button ng-if="ctrl.editModeDistance" ng-click="ctrl.changeEditModeDistance()" type="button" class="btn btn-default btn-xs"
-                                        data-toggle="modal" data-target="#distanceModal">
-                                    OK</button>
-
-                                </div>
-
-                                <rzslider ng-if="ctrl.editModeDistance" rz-slider-model="ctrl.disSlider.value" rz-slider-options="ctrl.disSlider.options"></rzslider>
-
-                                <div class="row panel-body">
-                                    <button ng-if="ctrl.isTesting" ng-click="ctrl.abortTest()" class="btn btn-default">Reset</button>
-                                    <button ng-if="!ctrl.isTesting" ng-click="ctrl.startTest()" class="btn btn-default">Start</button>
-                                </div>
-
-
-
-                                <div class="row panel-body">
-                                    <table>
-
-
-                                        <tr>
-                                            <td>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-default" ng-click="ctrl.userClicked('UP')">U</a>
-                                            </td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a class="btn btn-default" ng-click="ctrl.userClicked('LEFT')">L</a>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <a class="btn btn-default" ng-click="ctrl.userClicked('RIGHT')">R</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>
-                                                <a class="btn btn-default" ng-click="ctrl.userClicked('DOWN')">D</a>
-                                            </td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td style="height:20px"></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" style="height:40px; text-align:center; vertical-align:center">
-                                                <a class="btn btn-default" ng-click="ctrl.userClicked('CORRECT')">Correct / Clear</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" style="height:40px; text-align:center; vertical-align:center">
-                                                <a class="btn btn-default" ng-click="ctrl.userClicked('WRONG')">Wrong / Not Clear</a>
-                                            </td>
-                                        </tr>
-
-                                    </table>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-
+                        <button ng-if="ctrl.editModeTestType" ng-click="ctrl.changeEditModeTestType()" class="btn btn-default btn-xs">OK</button>
 
                     </div>
+                    <div class="panel-body">
+                        <span class="text-info">Testing VA:</span>
+
+                        <span ng-if="!ctrl.editModeCurVAGrade" class="label label-primary">{{ ctrl.testRecord.curVAGrade.value }}</span>
+                        <button ng-if="!ctrl.editModeCurVAGrade && !ctrl.isTesting" ng-click="ctrl.changeEditModeCurVAGrade()" class="btn btn-default btn-xs">Edit</button>
+
+                        <select ng-if="ctrl.editModeCurVAGrade" ng-init="ctrl.testRecord.curVAGrade" ng-model="ctrl.testRecord.curVAGrade" ng-options="vaGrade.text for vaGrade in ctrl.constants.vaGrades">
+                                    </select>
+                        <button ng-if="ctrl.editModeCurVAGrade" ng-click="ctrl.changeEditModeCurVAGrade()" class="btn btn-default btn-xs">OK</button>
+
+                    </div>
+                    <div class="panel-body">
+                        <span>Distance：</span>
+                        <span class="label label-primary">{{ ctrl.disSlider.value/100 }} M</span>
+                        <button ng-if="!ctrl.editModeDistance && !ctrl.isTesting" ng-click="ctrl.changeEditModeDistance()" type="button" class="btn btn-default btn-xs"
+                            data-toggle="modal" data-target="#distanceModal">
+                                    Edit</button>
+                        <button ng-if="ctrl.editModeDistance" ng-click="ctrl.changeEditModeDistance()" type="button" class="btn btn-default btn-xs"
+                            data-toggle="modal" data-target="#distanceModal">
+                                    OK</button>
+
+                    </div>
+                    <div>
+                        <rzslider style="width:250px" ng-if="ctrl.editModeDistance" rz-slider-model="ctrl.disSlider.value" rz-slider-options="ctrl.disSlider.options"></rzslider>
+                    </div>
+                    <div class="panel-body">
+                        <button ng-if="ctrl.isTesting" ng-click="ctrl.abortTest()" class="btn btn-default" style="width:80px">Reset</button>
+                        <button ng-if="!ctrl.isTesting" ng-click="ctrl.startTest()" class="btn btn-default" style="width:80px">Start</button>
+                    </div>
+
+                    <div class="row panel-body">
+                        <h4><label class="ng-class:'label label-'+ctrl.messageType">{{ ctrl.message }}</label></h4>
+                    </div>
+
+                    <div>
+                        <div class="container-fluid">
+                            <div><br/></div>
+                            <div style="position: relative;float: left;margin-right:15px;">
+                                <table>
+                                    <tr>
+                                        <td></td>
+                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('UP')">U</a>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('LEFT')">L</a>
+                                        </td>
+                                        <td></td>
+                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('RIGHT')">R</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('DOWN')">D</a>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="panel-body" style="width:60px; position: relative;float: left; text-align:center;">
+                                <p><a class="btn btn-default" style="width:80px" ng-click="ctrl.userClicked('CORRECT')">Clear</a>
+                                </p>
+                                <p><a class="btn btn-default" style="width:80px" ng-click="ctrl.userClicked('WRONG')">Not Clear</a></p>
+                            </div>
+
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <!--end of 视力检查 -->
-
-            <div ng-show="nav.currentPageId === 'aboutAuthor'" role="tabpanel" class="tab-pane active" id="aboutAuthor">
-                <div class="panel-body">
-                    <br><br><br><br><br><br> 作者介绍
-                    <br><br><br><br><br><br>
-                </div>
-            </div>
-            <!--end of  简介 -->
-
-            <div ng-show="nav.currentPageId === 'qa'" role="tabpanel" class="tab-pane active" id="qa">
-                <div class="panel-body">
-                    <br><br><br><br><br><br> Q&A
-                    <br><br><br><br><br><br>
-                </div>
-            </div>
-            <!--end of  简介 -->
-
         </div>
-        <!-- end of container div -->
-        <!--
+        <!--end of 视力检查 -->
+
+        <div ng-show="nav.currentPageId === 'qa'" role="tabpanel" class="tab-pane active" id="qa">
+            <div class="panel-body">
+                <br><br><br><br><br><br> Q&A
+                <br><br><br><br><br><br>
+            </div>
+        </div>
+        <!--end of  简介 -->
+
+        <div ng-show="nav.currentPageId === 'aboutAuthor'" role="tabpanel" class="tab-pane active" id="aboutAuthor">
+            <div class="panel-body">
+                <br><br><br><br><br><br> 作者介绍
+                <br><br><br><br><br><br>
+            </div>
+        </div>
+        <!--end of  简介 -->
+
+
+
+    </div>
+    <!-- end of container div -->
+    <!--
         <div ng-controller="FooterCtrl as foot">
             <h4>{{ foot.declaration }}</h4>
         </div>
