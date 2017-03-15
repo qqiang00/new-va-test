@@ -135,7 +135,7 @@
 
         this.abortTest = function () {
             self.isTesting = false;
-            self.message = "click start to begin.";
+            self.message = {"cn":"点击'开始'按钮开始检查","en":"click start to begin."};
         }
 
 
@@ -160,7 +160,7 @@
             self.isAnswerRight = false;
             self.isTestFinished = false;
             self.isAnalysising = false;
-            self.message = "make your choice";
+            self.message = {"cn":"开始您的选择","en":"make your choice"};
 
             if (TestRecordSvc.curVAGrade.index == 0) { // <0.1
                 TestRecordSvc.curVAGrade = ConstantSvc.vaGrades[1];
@@ -171,18 +171,20 @@
         this.displayFeedBack = function (isanswerright) {
             if (isanswerright) {
                 console.log("Correct Answer");
-                self.message = "Correct Choice";
+                self.message = {"cn":"真棒","en":"Correct Choice"};
                 self.messageType = "success";
             } else {
                 console.log("Wrong Answer");
-                self.message = "Wrong Choice";
+                self.message = {"cn":"很遗憾，选错了","en":"Wrong Choice"};
                 self.messageType = "danger";
             }
         }
 
         this.displayExamResult = function () {
             console.log("Test Finished");
-            self.message = "Final Grade: " + TestRecordSvc.finalVAGrade.text;
+            //self.message = {"cn":"最终视力: " + TestRecordSvc.finalVAGrade.text,
+            //                "en":"Final Grade: " + TestRecordSvc.finalVAGrade.text};
+            self.message = {"cn":"检查已经结束","en":"Test Completed"};
             self.messageType = "info";
         }
 
@@ -190,6 +192,7 @@
         this.startTest = function () {
             self.leaveEditMode();
             self.isTesting = true;
+            TestRecordSvc.getCurDate(); // 获取当前时间
             self.initPreExamData(); // 初始化数据
             // self.prepareCanvas();  // 准备Canvas,根据Canvas大小设置绘制中心
             // console.log("corRate:" + self.corRate);

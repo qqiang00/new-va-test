@@ -3,6 +3,8 @@
 
     function TestRecord(ConstantSvc) {
        
+        var self = this;
+        
         this.eye = ConstantSvc.eyes.unknown;
         this.testType = ConstantSvc.testType.unknown;
         this.distance = undefined;
@@ -15,6 +17,10 @@
             sex: undefined
         };
         
+        this.getCurDate = function() {
+            var date = new Date();
+            self.testDate = date.toLocaleDateString() + " / " + date.toLocaleTimeString();
+        }
     }
     app.service("TestRecordSvc", TestRecord);
 })();

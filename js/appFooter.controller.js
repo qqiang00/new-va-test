@@ -4,7 +4,7 @@
     app.controller("FooterCtrl", FooterCtrl);
 
     function FooterCtrl(AppConfigServiceSvc) {
-        this.declaration = "Author: " + AppConfigServiceSvc.author + " Last Update On:" + AppConfigServiceSvc.lastUpdateDate;
+        this.declaration = AppConfigServiceSvc.lastUpdateDate;
     }
     
 })();

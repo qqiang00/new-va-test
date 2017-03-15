@@ -4,23 +4,23 @@
     app.service("ConstantSvc", function () {
         var self = this;
         this.eyes = {                           // 眼别
-            ou: "OU",           // 双眼
-            os: "OS",           // 左眼
-            od: "OD",           // 右眼
-            unknown: "UnKnown"       // 未知
+            ou: {"cn":"双眼","en":"Both"},           // 双眼
+            os: {"cn":"左眼","en":"Left"},           // 左眼
+            od: {"cn":"右眼","en":"Right"},           // 右眼
+            unknown: {"cn":"未知","en":"Unknown"}       // 未知
         };
         this.testType = {                       // 检查类型
-            naked: "Naked",        // 裸眼
-            withGlasses: "Glasses",  // 戴镜
-            unknown: "UnKnown"
+            naked: {"cn":"裸眼","en":"Naked"},       // 裸眼
+            withGlasses: {"cn":"戴镜","en":"With glasses"},  // 戴镜
+            unknown: {"cn":"未知","en":"Unknown"} 
         };
         this.disType = {                        // 距离类型
-            near: "Near",        // 近视力
-            far: "Far",         // 远视力
+            near: {"cn":"近视力","en":"Near"},       // 近视力
+            far:  {"cn":"远视力","en":"Far"},        // 远视力
             //unknown: -1
         }
         this.vaGrades = [                       // 视力等级
-            { "index": 0, "value": "<0.1", "logvalue": "<4.0", "text": "Less than 0.1 (4.0)" },
+            { "index": 0, "value": "<0.1", "logvalue": "<4.0", "text":{"cn":"低于 0.1 (4.0)","en":"Less than 0.1 (4.0)"} },
             { "index": 1, "value": "0.1", "logvalue": "4.0", "text": "0.1 (4.0)" },
             { "index": 2, "value": "0.12", "logvalue": "4.1", "text": "0.12 (4.1)" },
             { "index": 3, "value": "0.15", "logvalue": "4.2", "text": "0.15 (4.2)" },
@@ -31,7 +31,7 @@
             { "index": 8, "value": "0.5", "logvalue": "4.7", "text": "0.5 (4.7)" },
             { "index": 9, "value": "0.6", "logvalue": "4.8", "text": "0.6 (4.8)" },
             { "index": 10, "value": "0.8", "logvalue": "4.9", "text": "0.8 (4.9)" },
-            { "index": 11, "value": "1.0", "logvalue": "5.0", "text": "1.0 (5.0) or Greater" }
+            { "index": 11, "value": "1.0", "logvalue": "5.0", "text":{"cn":"1.0 (5.0) 或更好","en":"1.0 (5.0) or greater"} },
         ];
         this.orientations = {                   // 描述E字符的朝向
             up: 0,

@@ -1,9 +1,22 @@
-
+.my-page-header {
+    margin:0px;
+    padding: 0 0 0 10px;
+    border-bottom: 0px solid #eee;
+}
 
 .pointer-cursor {
     cursor: pointer;
 }
 
 .align-right {
-     text-align: right;
+    text-align: right;
+    margin-right:15px;
+
 }
+
+.align-center {
+    text-align: center;
+    margin-right:15px;
+
+}
+

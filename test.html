@@ -1,15 +1,14 @@
-<html ng-app="VATestApp" ng-controller="MultiLangCtrl as mlctrl">
+<html ng-app="VATestApp" ng-controller="MultiLangCtrl as ml">
 
 <head>
     <title> Visual Acuity Test Application </title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
 
     <link rel="stylesheet" type="text/css" href="./css/rzslider.css" />
     <link rel="stylesheet" type="text/css" href="./css/mycss.css" />
     <script src="./js/jquery-3.1.1.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
 
     <script src="./js/angular.js"></script>
     <script src="./js/app.js"></script>
@@ -25,20 +24,20 @@
     <script src="./js/testRecord.service.js"></script>  
     <script src="./js/multiLanguage.controller.js"></script>
 
+    
 </head>
 
 <body ng-controller="PageNavCtrl as nav">
 
-    <div class="panel align-right" style="margin-right:15px">
+    <div class="align-right">
         <h6>
-            <span><a class="pointer-cursor" ng-click="mlctrl.switchLanguage('cn')">简体中文</a></span>
-            <span>&nbsp;|&nbsp;</span>
-            <span><a class="pointer-cursor" ng-click="mlctrl.switchLanguage('en')">English</a></span>
+            <span><a class="pointer-cursor" ng-show="ml.lang != 'cn'" ng-click="ml.switchLanguage('cn')">简体中文</a></span>
+            <span><a class="pointer-cursor" ng-show="ml.lang != 'en'" ng-click="ml.switchLanguage('en')">English</a></span>
         </h6>
     </div>
 
-    <div class="page-header" ng-controller="HeaderCtrl as head">
-        <h1> {{ mlctrl.ML(head.appTitle) }} <small>{{ mlctrl.ML(head.appSmallTitle) }}</small></h1>
+    <div class="my-page-header" ng-controller="HeaderCtrl as head">
+        <h1> {{ ml.$(head.appTitle) }} <small>{{ ml.$(head.appSmallTitle) }}</small></h1>
     </div>
 
 
@@ -55,7 +54,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand pointer-cursor" ng-click="nav.setCurrentPage('home')">
-                    {{ mlctrl.ML(nav.homePage.title) }}</a>
+                    {{ ml.$(nav.homePage.title) }}</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -63,7 +62,7 @@
                 <ul class="nav navbar-nav">
                     <li ng-repeat="page in nav.stepPages" class="pointer-cursor ng-class:nav.setPageStatus(page.id===nav.currentPageId)" role="presentation">
                         <a ng-click="nav.setCurrentPage(page.id)" aria-controls="" role="tab" data-toggle="tab">
-                        {{ mlctrl.ML(page.title) }} </a>
+                        {{ ml.$(page.title) }} </a>
                     </li>
                 </ul>
 
@@ -71,7 +70,7 @@
 
                     <li class="pointer-cursor ng-class:nav.setPageStatus('aboutAuthor'===nav.currentPageId)" role="presentation">
                         <a ng-click="nav.setCurrentPage('aboutAuthor')" aria-controls="" role="tab" data-toggle="tab">
-                       {{ mlctrl.ML(nav.aboutAuthorPage.title) }} </a>
+                       {{ ml.$(nav.aboutAuthorPage.title) }} </a>
 
                 </ul>
             </div>
@@ -94,28 +93,13 @@
     <!-- Tab panes -->
     <div class="tab-content" ng-controller="TestSettingCtrl as ctrl">
 
-        <div ng-show="nav.currentPageId === 'home'" role="tabpanel" class="tab-pane active" id="home">
-            <div class="panel-body container">
-                <div class="jumbotron">
-
-                    <h1>{{ mlctrl.ML(mlctrl.ctHomePage.title) }}</h1>
-                    <p>{{ mlctrl.ML(mlctrl.ctHomePage.p1) }}</p>
-                    <p>{{ mlctrl.ML(mlctrl.ctHomePage.p2) }}</p>
-                    <div class="align-right" role="group" aria-label="...">
-                        <button type="button" class="btn btn-primary btn-lg" ng-click="nav.setCurrentPage('qa')" role="button">{{ mlctrl.ML(mlctrl.ctHomePage.btn1 )}}</button>
-                        <button type="button" class="btn btn-primary btn-lg" ng-click="nav.setCurrentPage('correction')" role="button">{{ mlctrl.ML(mlctrl.ctHomePage.btn2 )}}</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!--end of  简介 -->
+        
 
         <div ng-show="nav.currentPageId === 'correction'" role="tabpanel" class="tab-pane active" id="correction">
             <div class="panel-body">
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <span>{{ mlctrl.ML(mlctrl.ctCorrectionPage.inform) }}</span>
+                    <span>{{ ml.$(ml.ctCorrectionPage.inform) }}</span>
                 </div>
 
                 <div>
@@ -123,6 +107,7 @@
                 </div>
                 <div>
                     <img ng-src="./images/card.png" width='{{ ctrl.corImg.oriWidth * ctrl.correctSlider.value / 100 }}' height='{{ ctrl.corImg.oriHeight * ctrl.correctSlider.value / 100 }}'></img>
+                <br/>
                 </div>
             </div>
         </div>
@@ -132,7 +117,7 @@
             <div class="panel-body">
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <span>{{ mlctrl.ML(mlctrl.ctVATestPage.inform) }}</span>
+                    <span>{{ ml.$(ml.ctTP.inform) }}</span>
                 </div>
             </div>
             <div class="container-fluid">
@@ -143,57 +128,60 @@
                 </div>
                 <div class="row panel-body" style="position: relative;float: left;">
                     <div class="panel-body">
-                        <span class="text-info">Eye:</span>
-                        <span ng-if="!ctrl.editModeEye" class="label label-primary">{{ ctrl.testRecord.eye }}</span>
-                        <button ng-if="!ctrl.editModeEye && !ctrl.isTesting" ng-click="ctrl.changeEditModeEye()" class="btn btn-default btn-xs">Edit</button>
+                        <span class="text-info">{{ ml.$(ml.ctTP.eye)}}:</span>
+                        <span ng-if="!ctrl.editModeEye" class="label label-primary">{{ ml.$(ctrl.testRecord.eye) }}</span>
+                        <button ng-if="!ctrl.editModeEye && !ctrl.isTesting" ng-click="ctrl.changeEditModeEye()" class="btn btn-default btn-xs">{{ ml.$(ml.ctTP.btnEdit) }}</button>
 
-                        <select ng-if="ctrl.editModeEye" ng-init="ctrl.testRecord.eye" ng-model="ctrl.testRecord.eye" ng-options="eye for eye in ctrl.constants.eyes">
+                        <select ng-if="ctrl.editModeEye" ng-init="ctrl.testRecord.eye" ng-model="ctrl.testRecord.eye" ng-options="ml.$(eye) for eye in ctrl.constants.eyes">
                                     </select>
-                        <button ng-if="ctrl.editModeEye" ng-click="ctrl.changeEditModeEye()" class="btn btn-default btn-xs">OK</button>
+                        <button ng-if="ctrl.editModeEye" ng-click="ctrl.changeEditModeEye()" class="btn btn-default btn-xs">{{ ml.$(ml.ctTP.btnOk) }}</button>
                     </div>
                     <div class="panel-body">
-                        <span class="text-info">Condition:</span>
+                        <span class="text-info">{{ ml.$(ml.ctTP.condition) }}:</span>
 
-                        <span ng-if="!ctrl.editModeTestType" class="label label-primary">{{ ctrl.testRecord.testType }}</span>
-                        <button ng-if="!ctrl.editModeTestType && !ctrl.isTesting" ng-click="ctrl.changeEditModeTestType()" class="btn btn-default btn-xs">Edit</button>
+                        <span ng-if="!ctrl.editModeTestType" class="label label-primary">{{ ml.$(ctrl.testRecord.testType) }}</span>
+                        <button ng-if="!ctrl.editModeTestType && !ctrl.isTesting" ng-click="ctrl.changeEditModeTestType()" class="btn btn-default btn-xs">{{ ml.$(ml.ctTP.btnEdit) }}</button>
 
-                        <select ng-if="ctrl.editModeTestType" ng-init="ctrl.testRecord.testType" ng-model="ctrl.testRecord.testType" ng-options="testType for testType in ctrl.constants.testType">
+                        <select ng-if="ctrl.editModeTestType" ng-init="ctrl.testRecord.testType" ng-model="ctrl.testRecord.testType" ng-options="ml.$(testType) for testType in ctrl.constants.testType">
                                     </select>
-                        <button ng-if="ctrl.editModeTestType" ng-click="ctrl.changeEditModeTestType()" class="btn btn-default btn-xs">OK</button>
-
-                    </div>
-                    <div class="panel-body">
-                        <span class="text-info">Testing VA:</span>
-
-                        <span ng-if="!ctrl.editModeCurVAGrade" class="label label-primary">{{ ctrl.testRecord.curVAGrade.value }}</span>
-                        <button ng-if="!ctrl.editModeCurVAGrade && !ctrl.isTesting" ng-click="ctrl.changeEditModeCurVAGrade()" class="btn btn-default btn-xs">Edit</button>
-
-                        <select ng-if="ctrl.editModeCurVAGrade" ng-init="ctrl.testRecord.curVAGrade" ng-model="ctrl.testRecord.curVAGrade" ng-options="vaGrade.text for vaGrade in ctrl.constants.vaGrades">
-                                    </select>
-                        <button ng-if="ctrl.editModeCurVAGrade" ng-click="ctrl.changeEditModeCurVAGrade()" class="btn btn-default btn-xs">OK</button>
+                        <button ng-if="ctrl.editModeTestType" ng-click="ctrl.changeEditModeTestType()" class="btn btn-default btn-xs">{{ ml.$(ml.ctTP.btnOk) }}</button>
 
                     </div>
                     <div class="panel-body">
-                        <span>Distance：</span>
+                        <span class="text-info">{{ ml.$(ml.ctTP.vaGrade) }}:</span>
+
+                        <span ng-if="!ctrl.editModeCurVAGrade" class="label label-primary">{{ ml.$(ctrl.testRecord.curVAGrade.value) }}</span>
+                        <button ng-if="!ctrl.editModeCurVAGrade && !ctrl.isTesting" ng-click="ctrl.changeEditModeCurVAGrade()" class="btn btn-default btn-xs">{{ ml.$(ml.ctTP.btnEdit)}}</button>
+
+                        <select ng-if="ctrl.editModeCurVAGrade" ng-init="ctrl.testRecord.curVAGrade" ng-model="ctrl.testRecord.curVAGrade" ng-options="ml.$(vaGrade.text) for vaGrade in ctrl.constants.vaGrades">
+                                    </select>
+                        <button ng-if="ctrl.editModeCurVAGrade" ng-click="ctrl.changeEditModeCurVAGrade()" class="btn btn-default btn-xs">{{ ml.$(ml.ctTP.btnOk) }}</button>
+
+                    </div>
+                    <div class="panel-body">
+                        <span class="text-info">{{ ml.$(ml.ctTP.distance) }}:</span>
                         <span class="label label-primary">{{ ctrl.disSlider.value/100 }} M</span>
                         <button ng-if="!ctrl.editModeDistance && !ctrl.isTesting" ng-click="ctrl.changeEditModeDistance()" type="button" class="btn btn-default btn-xs"
                             data-toggle="modal" data-target="#distanceModal">
-                                    Edit</button>
+                                    {{ ml.$(ml.ctTP.btnEdit) }}</button>
                         <button ng-if="ctrl.editModeDistance" ng-click="ctrl.changeEditModeDistance()" type="button" class="btn btn-default btn-xs"
                             data-toggle="modal" data-target="#distanceModal">
-                                    OK</button>
+                                    {{ ml.$(ml.ctTP.btnOk) }}</button>
 
                     </div>
                     <div>
                         <rzslider style="width:250px" ng-if="ctrl.editModeDistance" rz-slider-model="ctrl.disSlider.value" rz-slider-options="ctrl.disSlider.options"></rzslider>
                     </div>
                     <div class="panel-body">
-                        <button ng-if="ctrl.isTesting" ng-click="ctrl.abortTest()" class="btn btn-default" style="width:80px">Reset</button>
-                        <button ng-if="!ctrl.isTesting" ng-click="ctrl.startTest()" class="btn btn-default" style="width:80px">Start</button>
+                        <div class="btn-group" role="group" aria-label="...">
+                        <button ng-if="ctrl.isTesting" ng-click="ctrl.abortTest()" class="btn btn-default" style="width:80px">{{ ml.$(ml.ctTP.btnReset) }}</button>
+                        <button ng-if="!ctrl.isTesting || ctrl.isTestFinished" ng-click="ctrl.startTest()" class="btn btn-default" style="width:80px">{{ ml.$(ml.ctTP.btnStart) }}</button>
+                        <button ng-if="ctrl.isTestFinished" data-toggle="modal" data-target="#vaReportDialog" class="btn btn-default">{{ ml.$(ml.ctTP.btnShowReport) }}</button>
+                        </div>
                     </div>
 
-                    <div class="row panel-body">
-                        <h4><label class="ng-class:'label label-'+ctrl.messageType">{{ ctrl.message }}</label></h4>
+                    <div class="panel-body">
+                        <h4><label class="ng-class:'label label-'+ctrl.messageType">{{ ml.$(ctrl.message) }}</label></h4>
                     </div>
 
                     <div>
@@ -203,29 +191,29 @@
                                 <table>
                                     <tr>
                                         <td></td>
-                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('UP')">U</a>
+                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('UP')">{{ ml.$(ml.ctTP.btnUp) }}</a>
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('LEFT')">L</a>
+                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('LEFT')">{{ ml.$(ml.ctTP.btnLeft) }}</a>
                                         </td>
                                         <td></td>
-                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('RIGHT')">R</a>
+                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('RIGHT')">{{ ml.$(ml.ctTP.btnRight) }}</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('DOWN')">D</a>
+                                        <td><a class="btn btn-default" ng-click="ctrl.userClicked('DOWN')">{{ ml.$(ml.ctTP.btnDown) }}</a>
                                         </td>
                                         <td></td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="panel-body" style="width:60px; position: relative;float: left; text-align:center;">
-                                <p><a class="btn btn-default" style="width:80px" ng-click="ctrl.userClicked('CORRECT')">Clear</a>
+                                <p><a class="btn btn-default" style="width:80px" ng-click="ctrl.userClicked('CORRECT')">{{ ml.$(ml.ctTP.btnClear) }}</a>
                                 </p>
-                                <p><a class="btn btn-default" style="width:80px" ng-click="ctrl.userClicked('WRONG')">Not Clear</a></p>
+                                <p><a class="btn btn-default" style="width:80px" ng-click="ctrl.userClicked('WRONG')">{{ ml.$(ml.ctTP.btnNotClear) }}</a></p>
                             </div>
 
 
@@ -238,22 +226,90 @@
         <!--end of 视力检查 -->
 
         <div ng-show="nav.currentPageId === 'qa'" role="tabpanel" class="tab-pane active" id="qa">
-            <div class="panel-body">
-                <br><br><br><br><br><br> Q&A
-                <br><br><br><br><br><br>
+            
+            <div ng-repeat="qa in ml.qas" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ ml.$(qa.q) }}</h3>
+              </div>
+              <div class="panel-body">{{ ml.$(qa.a) }}
+              </div>
+            </div>
+            <br/>
+            
+        </div>
+        <!--end of  QA -->
+
+        <div ng-show="nav.currentPageId === 'home'" role="tabpanel" class="tab-pane active" id="home">
+            <div class="panel-body container">
+                <div class="jumbotron">
+
+                    <h1>{{ ml.$(ml.ctHomePage.title) }}</h1>
+                    <p>{{ ml.$(ml.ctHomePage.p1) }}</p>
+                    <p>{{ ml.$(ml.ctHomePage.p2) }}</p>
+                    <div class="align-right" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary btn-lg" ng-click="nav.setCurrentPage('qa')" role="button">{{ ml.$(ml.ctHomePage.btn1 )}}</button>
+                        <button type="button" class="btn btn-primary btn-lg" ng-click="nav.setCurrentPage('correction')" role="button">{{ ml.$(ml.ctHomePage.btn2 )}}</button>
+                    </div>
+
+                </div>
             </div>
         </div>
         <!--end of  简介 -->
-
+    
         <div ng-show="nav.currentPageId === 'aboutAuthor'" role="tabpanel" class="tab-pane active" id="aboutAuthor">
-            <div class="panel-body">
-                <br><br><br><br><br><br> 作者介绍
-                <br><br><br><br><br><br>
+            <div class="panel-body container">
+                <div class="jumbotron">
+
+                    <h2>{{ ml.$(ml.ctAuthor.name) }} <small>{{ ml.$(ml.ctAuthor.title) }}</small></h2>
+                    <br>
+
+                    <p><h4>{{ ml.$(ml.ctAuthor.university) }}</h4>  </p>
+                    <p><h4>{{ ml.$(ml.ctAuthor.degree) }}</h4></p>
+                    <p><h4>{{ ml.$(ml.ctAuthor.p1) }}</p></h4>
+                    <br/>
+                    <p><h4>Email:<a href="mailto:qqiangye@gmail.com">qqiangye@gmail.com</a></h4></p>
+                    <p class="align-right"><a href="source.rar">{{ ml.$(ml.ctAuthor.srcDownload) }}</a></p>
+                </div>
             </div>
         </div>
-        <!--end of  简介 -->
+        <!--end of  AboutAuthor -->
 
+        <!-- Model Final VA Report -->
 
+        <div class="modal fade" id="vaReportDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ ml.$(ml.ctReport.title) }}</h4>
+              </div>
+              <div class="panel panel-body">
+                  <dl class="dl-horizontal">
+                      <dt><span class="text-info">{{ ml.$(ml.ctReport.datetime) }}</span></dt>
+                      <dd><span class="text-info">{{ ml.$(ctrl.testRecord.testDate) }}</span></dd>
+                      
+                      <dt><span class="text-info">{{ ml.$(ml.ctTP.eye) }}</span></dt>
+                      <dd><span class="text-info">{{ ml.$(ctrl.testRecord.eye) }}</span></dd>
+
+                      <dt><span class="text-info">{{ ml.$(ml.ctTP.condition) }}</span></dt>
+                      <dd><span class="text-info">{{ ml.$(ctrl.testRecord.testType) }}</span></dd>
+                      
+                      <dt><span class="text-info">{{ ml.$(ml.ctTP.distance) }}</span></dt>
+                      <dd><span class="text-info">{{ ml.$(ctrl.testRecord.distance) }} M</span></dd>
+                      
+                      <dt><span class="text-info">{{ ml.$(ml.ctReport.yourVAGrade) }}</span></dt>
+                      <dd><h1>
+                          <label class="label label-info">{{ ml.$(ctrl.testRecord.finalVAGrade.text) }}</label>
+                          </h1></dd>
+                </dl>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ ml.$(ml.ctTP.btnOk) }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of Model Final VA Report -->
 
     </div>
     <!-- end of container div -->

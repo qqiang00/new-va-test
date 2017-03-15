@@ -17,17 +17,17 @@
     function AppConfig(AppNameSvc) {
 
         this.appName = { 
-            "cn": "视力检查", 
-            "en": "Visual Acuity Test" 
+            "cn": "在线视力检查", 
+            "en": "Online Visual Acuity Test Application", 
         };
         this.appSmallName = { 
-            "cn": "单页程序 —— 规范、准确、高效", 
-            "en": "SPA - Professional Precise Efficient" 
+            "cn": "——规范、准确、高效", 
+            "en": " - Professional Precise Efficient",
         };
         this.name = AppNameSvc;
         this.author = { "cn": "叶强", "en": "Qiang Ye" };
         this.version = 1;
-        this.lastUpdateDate = "17 Mar 2017";
+        this.lastUpdateDate = {"en":"latest updated on 17 Mar 2017","cn":"最近一次更新于2017年3月17日"};
         this.copyright = "Copyright 2010 - 2020 All rights reserved."
     }
     // factory 服务提供两个参数，第二个参数是一个方法对象，该方法的返回值提供给第一个参数
