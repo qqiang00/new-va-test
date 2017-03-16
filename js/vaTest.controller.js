@@ -2,7 +2,7 @@
     var app = angular.module("VATestApp");
     app.controller("TestSettingCtrl", TestSettingCtrl);
 
-    function TestSettingCtrl(DrawSvc, TestRecordSvc, ConstantSvc) {
+    function TestSettingCtrl(DrawSvc, TestRecordSvc, ConstantSvc, mls) {
 
         var self = this;
         this.panelName = "Start";
@@ -14,8 +14,8 @@
         //显示合适的距离，在距离<1时，显示为××厘米，当距离>1时，显示为××米
         function getTextedDis(dis) {
             if (dis == 0) { return "0"; }
-            else if (dis < 100) { return dis + "CM"; }
-            else { return dis / 100 + "M"; }
+            else if (dis < 100) { return dis + mls.$(mls.cm); }
+            else { return dis / 100 + mls.$(mls.m); }
         }
 
         this.disSlider = {
@@ -135,7 +135,7 @@
 
         this.abortTest = function () {
             self.isTesting = false;
-            self.message = {"cn":"点击'开始'按钮开始检查","en":"click start to begin."};
+            self.message = mls.$(mls.messages.click_to_start);
         }
 
 
@@ -160,7 +160,7 @@
             self.isAnswerRight = false;
             self.isTestFinished = false;
             self.isAnalysising = false;
-            self.message = {"cn":"开始您的选择","en":"make your choice"};
+            self.message = mls.$(mls.messages.make_choice);
 
             if (TestRecordSvc.curVAGrade.index == 0) { // <0.1
                 TestRecordSvc.curVAGrade = ConstantSvc.vaGrades[1];
@@ -171,11 +171,11 @@
         this.displayFeedBack = function (isanswerright) {
             if (isanswerright) {
                 console.log("Correct Answer");
-                self.message = {"cn":"真棒","en":"Correct Choice"};
+                self.message = mls.$(mls.messages.answer_right);
                 self.messageType = "success";
             } else {
                 console.log("Wrong Answer");
-                self.message = {"cn":"很遗憾，选错了","en":"Wrong Choice"};
+                self.message = mls.$(mls.messages.answer_wrong);
                 self.messageType = "danger";
             }
         }
@@ -184,7 +184,7 @@
             console.log("Test Finished");
             //self.message = {"cn":"最终视力: " + TestRecordSvc.finalVAGrade.text,
             //                "en":"Final Grade: " + TestRecordSvc.finalVAGrade.text};
-            self.message = {"cn":"检查已经结束","en":"Test Completed"};
+            self.message = mls.$(mls.messages.test_complete);
             self.messageType = "info";
         }
 

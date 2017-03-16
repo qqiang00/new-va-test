@@ -1,26 +1,26 @@
 (function () {
     var app = angular.module("VATestApp");
 
-    app.service("ConstantSvc", function () {
+    app.service("ConstantSvc", function (mls) {
         var self = this;
         this.eyes = {                           // 眼别
-            ou: {"cn":"双眼","en":"Both"},           // 双眼
-            os: {"cn":"左眼","en":"Left"},           // 左眼
-            od: {"cn":"右眼","en":"Right"},           // 右眼
-            unknown: {"cn":"未知","en":"Unknown"}       // 未知
+            ou: mls.ou,         // 双眼
+            os: mls.os,          // 左眼
+            od: mls.od,           // 右眼
+            unknown: mls.unknown,       // 未知
         };
         this.testType = {                       // 检查类型
-            naked: {"cn":"裸眼","en":"Naked"},       // 裸眼
-            withGlasses: {"cn":"戴镜","en":"With glasses"},  // 戴镜
-            unknown: {"cn":"未知","en":"Unknown"} 
+            naked: mls.naked,       // 裸眼
+            withGlasses: mls.withGlasses,  // 戴镜
+            unknown: mls.unknown,
         };
         this.disType = {                        // 距离类型
-            near: {"cn":"近视力","en":"Near"},       // 近视力
-            far:  {"cn":"远视力","en":"Far"},        // 远视力
+            near: mls.nearVA,       // 近视力
+            far:  mls.farVA,        // 远视力
             //unknown: -1
         }
         this.vaGrades = [                       // 视力等级
-            { "index": 0, "value": "<0.1", "logvalue": "<4.0", "text":{"cn":"低于 0.1 (4.0)","en":"Less than 0.1 (4.0)"} },
+            { "index": 0, "value": "<0.1", "logvalue": "<4.0", "text":mls.lessThan0_1 },
             { "index": 1, "value": "0.1", "logvalue": "4.0", "text": "0.1 (4.0)" },
             { "index": 2, "value": "0.12", "logvalue": "4.1", "text": "0.12 (4.1)" },
             { "index": 3, "value": "0.15", "logvalue": "4.2", "text": "0.15 (4.2)" },
@@ -31,7 +31,7 @@
             { "index": 8, "value": "0.5", "logvalue": "4.7", "text": "0.5 (4.7)" },
             { "index": 9, "value": "0.6", "logvalue": "4.8", "text": "0.6 (4.8)" },
             { "index": 10, "value": "0.8", "logvalue": "4.9", "text": "0.8 (4.9)" },
-            { "index": 11, "value": "1.0", "logvalue": "5.0", "text":{"cn":"1.0 (5.0) 或更好","en":"1.0 (5.0) or greater"} },
+            { "index": 11, "value": "1.0", "logvalue": "5.0", "text":mls.orGreater1_0 },
         ];
         this.orientations = {                   // 描述E字符的朝向
             up: 0,

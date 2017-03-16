@@ -14,21 +14,14 @@
     // 这个方法被factory服务作为参数调用
     // 这个方法本身调用了一个value服务：AppNameSvc
     // 这个方法是以构造方法的形式写的
-    function AppConfig(AppNameSvc) {
+    function AppConfig(mls) {
 
-        this.appName = { 
-            "cn": "在线视力检查", 
-            "en": "Online Visual Acuity Test Application", 
-        };
-        this.appSmallName = { 
-            "cn": "——规范、准确、高效", 
-            "en": " - Professional Precise Efficient",
-        };
-        this.name = AppNameSvc;
-        this.author = { "cn": "叶强", "en": "Qiang Ye" };
+        this.appName = mls.appName;
+        this.appSmallName = mls.appSmallName;
+        this.author = mls.author;
         this.version = 1;
-        this.lastUpdateDate = {"en":"latest updated on 17 Mar 2017","cn":"最近一次更新于2017年3月17日"};
-        this.copyright = "Copyright 2010 - 2020 All rights reserved."
+        this.lastUpdateDate = mls.lastUpdateDate;
+        this.copyright = mls.copyright;
     }
     // factory 服务提供两个参数，第二个参数是一个方法对象，该方法的返回值提供给第一个参数
     // app.factory("AppDataFactorySvc", prepareAppConfig) // prepareAppConfig();

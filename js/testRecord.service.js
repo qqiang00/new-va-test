@@ -19,7 +19,7 @@
         
         this.getCurDate = function() {
             var date = new Date();
-            self.testDate = date.toLocaleDateString() + " / " + date.toLocaleTimeString();
+            self.testDate = date.toLocaleDateString() + " / " + date.toTimeString();
         }
     }
     app.service("TestRecordSvc", TestRecord);
