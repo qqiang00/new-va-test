@@ -28,7 +28,7 @@
         this.appName = {
             "cn": "在线视力检查",
             "en": "Online Visual Acuity Test",
-            "fr": "L'inspection Visuelle en Ligne"
+            "fr": "Le test d'acuité visuelle en Ligne"
         };
         this.appSmallName = {
             "cn": " —— 规范、准确、高效",
