@@ -61,10 +61,12 @@
         //计算在先前校准条件下的形式描述的E字符的笔画宽度，距离单位是米，字符笔画宽度是mm
         this.getPXELineWidth = function (dis, va) {
             //先找出在确定的距离和视力表下对应的以mm为单位的字符宽度
-            //公式:linewidth*va*5.0=1.5*1.0*distance
-            var mmlinewidth = 1.5 * 1.0 * dis / (5.0 * va);
+            //公式:linewidth*va*5.0=1.4544*1.0*distance
+            //1.45444对应于，5米远1'视角的宽度，通过计算 tan(1/60)*5*1000得到
+            var mmlinewidth = 1.45444 * 1.0 * dis / (5.0 * va);
             //根据mm单位的宽度计算所需要的像素值
             //85.6mm长的身份证对应的矩形宽度为428*corHor.
+            //428.0应与vaTest.controller.js里的corImg的长度数值相同
             var pxlinewidth = 428.0 * self.corRate * mmlinewidth / 85.6;
             return Math.round(pxlinewidth);
         }
