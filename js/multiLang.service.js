@@ -33,7 +33,7 @@
         this.appSmallName = {
             "cn": " —— 规范、准确、高效",
             "en": " - Professional, Precise and Efficient",
-            "fr": " - Professional, précise et efficace",
+            "fr": " - Professionel, précis et efficace",
         };
         this.author = { "cn": "叶强", "en": "Qiang YE", "fr": "Pierre YE" };
         this.lastUpdateDate = {
@@ -47,7 +47,7 @@
         this.os = { "cn": "左眼", "en": "Left", "fr": "Gauche" };           // 左眼
         this.od = { "cn": "右眼", "en": "Right", "fr": "Droite" };
         this.naked = { "cn": "裸眼", "en": "Naked", "fr": "Sans lunettes" };
-        this.withGlasses = { "cn": "戴镜", "en": "Avec des lunettes" };
+        this.withGlasses = { "cn": "戴镜", "en": "With glasses","fr":"Avec des lunettes" };
         this.nearVA = { "cn": "近视力", "en": "Near", "fr": "Près" };
         this.farVA = { "cn": "远视力", "en": "Far", "fr": "Loin" };
         this.unknown = { "cn": "未知", "en": "Unknown", "fr": "Inconnu" };
@@ -128,7 +128,7 @@
         // words on Calibration Page
         this.ctCalibrationPage = {
             inform: {
-                "cn": "取出一张尺寸为856mm×540mm的卡片.滑动下方的滑块来缩放矩形区域，同时调整卡片位置使得它尽量与卡片重合. 完全重合即表示校准已完成.此后的操作中请不要调整屏幕分辨率以及缩放浏览器.校准完毕后点击'视力检查'菜单进入视力检查页面",
+                "cn": "取出一张尺寸为856mm×540mm的卡片.滑动下方的滑块来缩放矩形区域，同时调整卡片位置使得它尽量与卡片重合. 完全重合即表示校准已完成.此后的操作中请不要调整屏幕分辨率以及缩放浏览器.校准完毕后点击'视力检查'菜单进入视力检查页面。",
                 "en": "Prepare a card sized：856mm×540mm, put it onto the screen. Zoom in/out the rectangle until it is completely overlapped. Do NOT adjust the resolution and zoom in/out the browser after Calibration. Now, go to 'Visual Acuity Test' Page.",
                 "fr": "Préparez une carte de taille: 856mm × 540mm, mettez-le sur l'écran. Zoom avant / arrière le rectangle jusqu'à ce qu'il soit complètement recouvert. NE PAS ajuster la résolution et zoomer sur le navigateur après l'étalonnage. Maintenant, allez à la page 'Test d'acuité visuelle'.",
             }
@@ -141,9 +141,9 @@
                 "fr": "Assurez-vous que vous avez effectué processus de la calibration en premier. Sinon, allez dans le menu 'calibration'.",
             },
             inform: {
-                "cn": "您可以选择检查某一单眼或双眼同时检查，也可以戴或不戴眼镜。检查远视力建议选择3-5m。选择一个和您差不多级别的视力以节省检查时间。 调整屏幕到最大亮度和对比度。检查时保持屏幕与眼同高，使视线平行。设置好后就可以点击'开始'按钮。",
-                "en": "You can choose to test either eye or both with or without glasses. The distance of 3-5 meters is recommended for FAR visual acuity(VA) test. Select a VA grade close to yours may save time. Adjust the screen brightness and contrast to the highest level, keep environment bright. Keep screen and eye same high so that you can look at the screen horizontally. Click 'Start' button when ready.",
-                "fr": "Vous pouvez choisir de tester l'œil ou les deux avec ou sans lunettes. La distance de 3 à 5 mètres est recommandée pour le test d'acuité visuelle (VA) de Loin. Choisissez un niveau du VA proche de le vôtre peut gagner du temps. Réglez la luminosité et le contraste de l'écran au niveau le plus élevé, gardez l'environnement lumineux. Gardez l'écran et les yeux même haute de sorte que vous pouvez regarder l'écran horizontalement. Cliquez sur le bouton 'Commencez' lorsque vous êtes prêt.",
+                "cn": "您可以选择检查某一单眼或双眼同时检查，也可以戴或不戴眼镜。检查远视力建议选择2-5m。选择一个和您差不多级别的视力以节省检查时间。 调整屏幕到最大亮度和对比度。检查时保持屏幕与眼同高，使视线平行。设置好后就可以点击'开始'按钮。",
+                "en": "You can choose to test either eye or both with or without glasses. The distance of 2-5 meters is recommended for FAR visual acuity(VA) test. Select a VA grade close to yours may save time. Adjust the screen brightness and contrast to the highest level, keep environment bright. Keep screen and eye same high so that you can look at the screen horizontally. Click 'Start' button when ready.",
+                "fr": "Vous pouvez choisir de tester l'œil ou les deux avec ou sans lunettes. La distance de 2 à 5 mètres est recommandée pour le test d'acuité visuelle (VA) de Loin. Choisissez un niveau du VA proche de le vôtre peut gagner du temps. Réglez la luminosité et le contraste de l'écran au niveau le plus élevé, gardez l'environnement lumineux. Gardez l'écran et les yeux même haute de sorte que vous pouvez regarder l'écran horizontalement. Cliquez sur le bouton 'Commencez' lorsque vous êtes prêt.",
             },
             eye: {
                 "cn": "受试眼别",
@@ -217,13 +217,13 @@
             btnShowReport: {
                 "cn": "查看报告",
                 "en": "See Report",
-                "fr": "Voir le rapport",
+                "fr": "Voir le Rapport",
             },
         };
 
         this.ctReport = {
             title: { "cn": "视力检查报告", "en": "Visual Acuity Test Report", "fr": "Rapport du test d'acuité visuelle" },
-            datetime: { "cn": "日期/时间", "en": "Date/Time", "fr": "Date/Heure" },
+            datetime: { "cn": "日期时间", "en": "Date Time", "fr": "Date Heure" },
             yourVAGrade: { "cn": "您的视力", "en": "Your Visual Acuity", "fr": "Votre niveau de VA" },
         };
 
@@ -268,8 +268,8 @@
                     "cn": "问题：与传统视力设备相比，这个在线系统有什么优点和缺点?"
                 },
                 a: {
-                    "en": "A: First of all, this online visual acuity(VA) test application is very professional, which means it is designed and programmed based on the principles of visual acuity definition. Second, with this application, you won't deed heavy VA test instruments anymore, all you need is a browser. Third, the test distance will not be limited only to 2.5m or 5m, you can choose different distances and the program will then calculate the size of 'E' precisely for this distance at current testing VA level. That is, you can decide the your testing position first, then measure the distance from your position to the screen and input the data to the program. But you may need an assistant to help you give the program your feedback about the ’E' orientation, for you might not be able to press the button on the page if you are not close enough to the screen.  The other shortcoming might be the manual calibration process. which I think is essential to any online VA test applications using client browsers. Due to the resolution difference of display devices, 'E' might not be very precisely displayed in some higher visual acuity levels, especially when distance decreases to a threshold (such as 20cm).",
-                    "cn": "首先，这个在线视力检查应用是非常职业规范的，它是基于视力度量的定义这一原则来设计和编程的。其次，有了这个应用，您将不再需要一些较重的视力检查设备，你仅需要一个浏览器就可以了。第三，检查距离不再受限于2.5米或5米，您可以选择不同的距离，程序将会根据当前的距离和视力等级来精确计算应该显示的'E'字符的大小。也就是说，您可以先确定您检查时的位置，然后测量您到屏幕之间的距离，告诉程序就可以了。不过您可能需要一个助手来告诉程序您的反馈，因为你可能距离屏幕较远而无法自己点击按钮。另一个缺点也许就是手工校准步骤，不过这个步骤是任何一个使用客户端浏览器设计的在线视力检查系统都必需的。还有一个缺点就是，由于不同显示设备的显示分辨能力不同，某些设备上，在检查视力等级很高的情况下，如果检查距离过近(比如小于20厘米)，'E'字符的显示可能会不清晰。"
+                    "en": "A: First of all, this online visual acuity(VA) test application is very professional, which means it is designed and programmed based on the principles of visual acuity definition. Second, with this application, you won't deed heavy VA test instruments anymore, all you need is a browser. Third, the test distance will not be limited only to 2.5m or 5m, you can choose different distances and the program will then calculate the size of 'E' precisely for this distance at current testing VA level. That is, you can decide the your testing position first, then measure the distance from your position to the screen and input the data to the program. But you may need an assistant to help you give the program your feedback about the ’E' orientation, for you might not be able to press the button on the page if you are not close enough to the screen.  The other shortcoming might be the manual calibration process. which I think is essential to any online VA test applications using client browsers. Due to the resolution difference of display devices, 'E' might not be very precisely displayed in some higher visual acuity levels, especially when distance decreases to a threshold (such as 30cm).",
+                    "cn": "首先，这个在线视力检查应用是非常职业规范的，它是基于视力度量的定义这一原则来设计和编程的。其次，有了这个应用，您将不再需要一些较重的视力检查设备，你仅需要一个浏览器就可以了。第三，检查距离不再受限于2.5米或5米，您可以选择不同的距离，程序将会根据当前的距离和视力等级来精确计算应该显示的'E'字符的大小。也就是说，您可以先确定您检查时的位置，然后测量您到屏幕之间的距离，告诉程序就可以了。不过您可能需要一个助手来告诉程序您的反馈，因为你可能距离屏幕较远而无法自己点击按钮。另一个缺点也许就是手工校准步骤，不过这个步骤是任何一个使用客户端浏览器设计的在线视力检查系统都必需的。还有一个缺点就是，由于不同显示设备的显示分辨能力不同，某些设备上，在检查视力等级很高的情况下，如果检查距离过近(比如小于30厘米)，'E'字符的显示可能会不清晰。"
                 }
             },
             {
@@ -318,7 +318,7 @@
 
             {
                 q: {
-                    "en": "Q: Why can't I have access to test the VA level from 1.2 - 2.0",
+                    "en": "Q: Why can't I have access to test the VA level from 1.2 - 2.0?",
                     "cn": "问题：为什么不提供等级从1.2 - 2.0的视力检查？"
                 },
                 a: {
