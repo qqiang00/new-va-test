@@ -63,7 +63,7 @@
         };
         this.home = { "cn": "首页", "en": "Home", "fr":"Accueil" };
         this.calibration = { "cn": "校准", "en": "Calibration","fr":"Calibration" };
-        this.vaTest = { "cn": "视力检查", "en": "VA Test", "fr":"L'inspection visuelle" };
+        this.vaTest = { "cn": "视力检查", "en": "Visual Acuity Test", "fr":"Test d'acuité visuelle" };
         this.qa = { "cn": "常见问答", "en": "Q&A", "fr":"Q&R"};
         this.aboutAuthor = { "cn": "关于作者", "en": "About Author","fr":"A propos de l'auteur" };
         this.m = { "cn": "米", "en": "M","fr":"M" };
@@ -128,13 +128,18 @@
         // words on Calibration Page
         this.ctCalibrationPage = {
             inform: {
-                "cn": "取出一张尺寸为856mm×540mm的卡片.滑动下方的滑块来缩放矩形区域，同时调整卡片位置使得它尽量与卡片重合. 完全重合即表示校准已完成.此后的操作中请不要调整屏幕分辨率以及缩放浏览器.",
-                "en": "Prepare a card sized：856mm×540mm, put it onto the screen. Zoom in/out the rectangle until it is completely overlapped. Do NOT adjust the resolution and zoom in/out the browser after Calibration.",
-                "fr": "Préparez une carte de taille: 856mm × 540mm, mettez-le sur l'écran. Zoom avant / arrière le rectangle jusqu'à ce qu'il soit complètement recouvert. NE PAS ajuster la résolution et zoomer sur le navigateur après l'étalonnage.",
+                "cn": "取出一张尺寸为856mm×540mm的卡片.滑动下方的滑块来缩放矩形区域，同时调整卡片位置使得它尽量与卡片重合. 完全重合即表示校准已完成.此后的操作中请不要调整屏幕分辨率以及缩放浏览器.校准完毕后点击'视力检查'菜单进入视力检查页面",
+                "en": "Prepare a card sized：856mm×540mm, put it onto the screen. Zoom in/out the rectangle until it is completely overlapped. Do NOT adjust the resolution and zoom in/out the browser after Calibration. Now, go to 'Visual Acuity Test' Page.",
+                "fr": "Préparez une carte de taille: 856mm × 540mm, mettez-le sur l'écran. Zoom avant / arrière le rectangle jusqu'à ce qu'il soit complètement recouvert. NE PAS ajuster la résolution et zoomer sur le navigateur après l'étalonnage. Maintenant, allez à la page 'Test d'acuité visuelle'.",
             }
         };
         // words on VA test Page
         this.ctTP = {
+            warning:{
+                "cn":"请确认您已经完成校准工作，如果没有，请先点击'校准'菜单进入校准页面。",
+                "en":"Make sure that you performed calibration process first. If not, go to 'calibration' menu.",
+                "fr":"Assurez-vous que vous avez effectué processus de la calibration en premier. Sinon, allez dans le menu 'calibration'.",
+            },
             inform: {
                 "cn": "您可以选择检查某一单眼或双眼同时检查，也可以戴或不戴眼镜。检查远视力建议选择3-5m。选择一个和您差不多级别的视力以节省检查时间。 调整屏幕到最大亮度和对比度。检查时保持屏幕与眼同高，使视线平行。设置好后就可以点击'开始'按钮。",
                 "en": "You can choose to test either eye or both with or without glasses. The distance of 3-5 meters is recommended for FAR visual acuity(VA) test. Select a VA grade close to yours may save time. Adjust the screen brightness and contrast to the highest level, keep environment bright. Keep screen and eye same high so that you can look at the screen horizontally. Click 'Start' button when ready.",

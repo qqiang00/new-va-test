@@ -1,15 +1,15 @@
 <html ng-app="VATestApp" ng-controller="MultiLangCtrl as ml">
 
 <head>
-  
-    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8">   
+
+    <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8">
     <meta name="description" content="Online Visual Acuity Test Application">
     <meta name="keywords" content="Visual Acuity, 在线测视力，测视力，视力，视力检查，在线视力检查，visual acuity test">
-    <meta name="author" content="Qiang YE">  
+    <meta name="author" content="Qiang YE">
     <title>Online Visual Acuity Test - 在线视力检查</title>
-    
+
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
 
     <link rel="stylesheet" type="text/css" href="./css/rzslider.css" />
     <link rel="stylesheet" type="text/css" href="./css/mycss.css" />
@@ -24,11 +24,11 @@
     <script src="./js/appConfig.service.js"></script>
     <script src="./js/constant.service.js"></script>
     <script src="./js/draw.service.js"></script>
-    <script src="./js/testRecord.service.js"></script>  
+    <script src="./js/testRecord.service.js"></script>
     <script src="./js/vaTest.controller.js"></script>
     <script src="./js/rzslider.js"></script>
 
-    
+
 </head>
 
 <body ng-controller="PageNavCtrl as nav">
@@ -98,7 +98,7 @@
     <!-- Tab panes -->
     <div class="tab-content" ng-controller="TestSettingCtrl as ctrl">
 
-        
+
 
         <div ng-show="nav.currentPageId === 'calibration'" role="tabpanel" class="tab-pane active" id="calibration">
             <div class="panel-body">
@@ -112,7 +112,7 @@
                 </div>
                 <div>
                     <img ng-src="./images/card.png" width='{{ ctrl.corImg.oriWidth * ctrl.correctSlider.value / 100 }}' height='{{ ctrl.corImg.oriHeight * ctrl.correctSlider.value / 100 }}'></img>
-                <br/>
+                    <br/>
                 </div>
             </div>
         </div>
@@ -120,6 +120,10 @@
 
         <div ng-show="nav.currentPageId === 'vaTest'" role="tabpanel" class="tab-pane active" id="vaTest">
             <div class="panel-body">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span>{{ ml.$(ml.data.ctTP.warning) }}</span>
+                </div>
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <span>{{ ml.$(ml.data.ctTP.inform) }}</span>
@@ -179,9 +183,9 @@
                     </div>
                     <div class="panel-body">
                         <div class="btn-group" role="group" aria-label="...">
-                        <button ng-if="ctrl.isTesting" ng-click="ctrl.abortTest()" class="btn btn-default">{{ ml.$(ml.data.ctTP.btnReset) }}</button>
-                        <button ng-if="!ctrl.isTesting || ctrl.isTestFinished" ng-click="ctrl.startTest()" class="btn btn-default">{{ ml.$(ml.data.ctTP.btnStart) }}</button>
-                        <button ng-if="ctrl.isTestFinished" data-toggle="modal" data-target="#vaReportDialog" class="btn btn-default">{{ ml.$(ml.data.ctTP.btnShowReport) }}</button>
+                            <button ng-if="ctrl.isTesting" ng-click="ctrl.abortTest()" class="btn btn-default">{{ ml.$(ml.data.ctTP.btnReset) }}</button>
+                            <button ng-if="!ctrl.isTesting || ctrl.isTestFinished" ng-click="ctrl.startTest()" class="btn btn-default">{{ ml.$(ml.data.ctTP.btnStart) }}</button>
+                            <button ng-if="ctrl.isTestFinished" data-toggle="modal" data-target="#vaReportDialog" class="btn btn-default">{{ ml.$(ml.data.ctTP.btnShowReport) }}</button>
                         </div>
                     </div>
 
@@ -231,16 +235,16 @@
         <!--end of 视力检查 -->
 
         <div ng-show="nav.currentPageId === 'qa'" role="tabpanel" class="tab-pane active" id="qa">
-            
+
             <div ng-repeat="qa in ml.data.qas" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ ml.$(qa.q) }}</h3>
-              </div>
-              <div class="panel-body">{{ ml.$(qa.a) }}
-              </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ ml.$(qa.q) }}</h3>
+                </div>
+                <div class="panel-body">{{ ml.$(qa.a) }}
+                </div>
             </div>
             <br/>
-            
+
         </div>
         <!--end of  QA -->
 
@@ -260,7 +264,7 @@
             </div>
         </div>
         <!--end of  简介 -->
-    
+
         <div ng-show="nav.currentPageId === 'aboutAuthor'" role="tabpanel" class="tab-pane active" id="aboutAuthor">
             <div class="panel-body container">
                 <div class="jumbotron">
@@ -268,11 +272,19 @@
                     <h2>{{ ml.$(ml.data.ctAuthor.name) }} <small>{{ ml.$(ml.data.ctAuthor.title) }}</small></h2>
                     <br>
 
-                    <p><h4>{{ ml.$(ml.data.ctAuthor.university) }}</h4>  </p>
-                    <p><h4>{{ ml.$(ml.data.ctAuthor.degree) }}</h4></p>
-                    <p><h4>{{ ml.$(ml.data.ctAuthor.p1) }}</p></h4>
+                    <p>
+                        <h4>{{ ml.$(ml.data.ctAuthor.university) }}</h4>
+                    </p>
+                    <p>
+                        <h4>{{ ml.$(ml.data.ctAuthor.degree) }}</h4>
+                    </p>
+                    <p>
+                        <h4>{{ ml.$(ml.data.ctAuthor.p1) }}</p>
+                    </h4>
                     <br/>
-                    <p><h4>Email:<a href="mailto:qqiangye@gmail.com">qqiangye@gmail.com</a></h4></p>
+                    <p>
+                        <h4>Email:<a href="mailto:qqiangye@gmail.com">qqiangye@gmail.com</a></h4>
+                    </p>
                     <p class="align-right"><a href="source.zip">{{ ml.$(ml.data.ctAuthor.srcDownload) }}</a></p>
                 </div>
             </div>
@@ -282,47 +294,49 @@
         <!-- Model Final VA Report -->
 
         <div class="modal fade" id="vaReportDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">{{ ml.$(ml.data.ctReport.title) }}</h4>
-              </div>
-              <div class="panel panel-body">
-                  <dl class="dl-horizontal">
-                      <dt><span class="text-info">{{ ml.$(ml.data.ctReport.datetime) }}</span></dt>
-                      <dd><span class="text-info">{{ ml.$(ctrl.testRecord.testDate) }}</span></dd>
-                      
-                      <dt><span class="text-info">{{ ml.$(ml.data.ctTP.eye) }}</span></dt>
-                      <dd><span class="text-info">{{ ml.$(ctrl.testRecord.eye) }}</span></dd>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ ml.$(ml.data.ctReport.title) }}</h4>
+                    </div>
+                    <div class="panel panel-body">
+                        <dl class="dl-horizontal">
+                            <dt><span class="text-info">{{ ml.$(ml.data.ctReport.datetime) }}</span></dt>
+                            <dd><span class="text-info">{{ ml.$(ctrl.testRecord.testDate) }}</span></dd>
 
-                      <dt><span class="text-info">{{ ml.$(ml.data.ctTP.condition) }}</span></dt>
-                      <dd><span class="text-info">{{ ml.$(ctrl.testRecord.testType) }}</span></dd>
-                      
-                      <dt><span class="text-info">{{ ml.$(ml.data.ctTP.distance) }}</span></dt>
-                      <dd><span class="text-info">{{ ml.$(ctrl.testRecord.distance) }} M</span></dd>
-                      
-                      <dt><span class="text-info">{{ ml.$(ml.data.ctReport.yourVAGrade) }}</span></dt>
-                      <dd><h1>
-                          <label class="label label-info">{{ ml.$(ctrl.testRecord.finalVAGrade.text) }}</label>
-                          </h1></dd>
-                </dl>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{ ml.$(ml.data.ctTP.btnOk) }}</button>
-              </div>
+                            <dt><span class="text-info">{{ ml.$(ml.data.ctTP.eye) }}</span></dt>
+                            <dd><span class="text-info">{{ ml.$(ctrl.testRecord.eye) }}</span></dd>
+
+                            <dt><span class="text-info">{{ ml.$(ml.data.ctTP.condition) }}</span></dt>
+                            <dd><span class="text-info">{{ ml.$(ctrl.testRecord.testType) }}</span></dd>
+
+                            <dt><span class="text-info">{{ ml.$(ml.data.ctTP.distance) }}</span></dt>
+                            <dd><span class="text-info">{{ ml.$(ctrl.testRecord.distance) }} M</span></dd>
+
+                            <dt><span class="text-info">{{ ml.$(ml.data.ctReport.yourVAGrade) }}</span></dt>
+                            <dd>
+                                <h1>
+                                    <label class="label label-info">{{ ml.$(ctrl.testRecord.finalVAGrade.text) }}</label>
+                                </h1>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ ml.$(ml.data.ctTP.btnOk) }}</button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
         <!-- end of Model Final VA Report -->
 
     </div>
     <!-- end of container div -->
-    
+
     <div>
         <h6 class="align-right">{{ ml.$(ml.data.lastUpdateDate) }}</h6>
     </div>
-    
+
 </body>
 
 </html>
