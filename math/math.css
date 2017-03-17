@@ -1,0 +1,25 @@
+.expression {
+    font-size:60px;
+    text-align: center;
+    color: #666666;
+}
+
+.input-result {
+    width:80px;
+    height:60px;
+    font-size:60px;
+    padding:0;
+    border-style:none none solid none;
+    border-width:0 0 2px 0;
+    border-color: #666666;
+
+}
+.input-result:focus {
+    border-style:none none solid none;
+}
+
+.button {
+    font-size:40px;
+    text-align: center;
+    color: #666666;
+}

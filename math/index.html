@@ -1,0 +1,38 @@
+<html ng-app="MathApp" ng-controller="CalculateCtrl as ctrl">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8">
+    <meta name="description" content="四则运算">
+    <meta name="keywords" content="四则运算">
+    <meta name="author" content="叶强">
+    <link rel="e-icon" title="四则运算">
+    <link rel="stylesheet" href="./math.css" />
+    <title>四则运算</title>
+    
+    <script src="../js/angular.js"></script>
+    <script src="app.js"></script>
+
+</head>
+<body>
+<br/><br/>
+<div class="expression">
+    <button class="button" ng-click="ctrl.produceExpression()">出题</button>:&nbsp;&nbsp;
+    <span ng-bind="ctrl.curNum1"></span>&nbsp;
+    <span ng-bind="ctrl.curOp.text"></span>&nbsp;
+    <span ng-bind="ctrl.curNum2"></span>&nbsp;
+    <span ng-bind="ctrl.curCpt.text"></span>&nbsp;
+    <input type="text" class="input-result" ng-model="ctrl.userResponse"></input>
+    <button class = "button" ng-click="ctrl.checkResponse()">写好了</button>
+
+    <br><br>
+    <p ng-if="ctrl.isCurResponseRight"><img width=60 height=60 src="../images/right.png"/>
+    <span style="color:#339933">答对了!</span>
+    </p>
+    <p ng-if="ctrl.isCurResponseRight == false"><img width=60 height=60 src="../images/wrong.png"/>
+    <span style="color:#993333">答错了,正确答案是: {{ ctrl.curAnswer }}</span>
+    </p>
+
+</div>
+</body>
+</html>
